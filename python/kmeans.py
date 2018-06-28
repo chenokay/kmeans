@@ -28,10 +28,12 @@ class Point(object):
 def update_centroids(points,centroids):
     groups = groupby(points,centroids)
     res = []
+    ## 通过上一次选定中心，得到cluster，计算下一次seed中心
     for g in groups.values():
         res.append(sum(g, Point(0,0))/len(g))
     return res
 
+## 根据选定seed 中心，计算属于各seed 的点
 def groupby(points,centroids):
     g = defaultdict(list)
     for p in points:
